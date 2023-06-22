@@ -15,7 +15,6 @@ export class AppComponent {
   constructor(private taskService: TasksServiceService) {
     this.allItems = taskService.getItems();
   }
-
   addItem() {
     this.taskService.addItem(this.description, this.status);
     this.allItems = this.taskService.getItems();
@@ -27,20 +26,10 @@ export class AppComponent {
   get filterItems() {
     if (this.filter === 'all') {
       return this.allItems;
-    } else if (this.filter === 'done') {
-      return this.allItems.filter((item) => {
-        return item.status === 'done';
-      });
-    } else if (this.filter === 'important') {
-      return this.allItems.filter((item) => {
-        return item.status === 'important';
-      });
-    } else if (this.filter === 'unimportant') {
-      return this.allItems.filter((item) => {
-        return item.status === 'unimportant';
-      });
     } else {
-      return this.allItems;
+      return this.allItems.filter((item) => {
+        return item.status === this.filter;
+      });
     }
   }
 }

@@ -28,7 +28,6 @@
     </button>
   </div>
   <h2>Tasks: {{filterItems.length}}</h2>
-
   <ul>
     <li *ngFor="let item of filterItems">
       <app-item (remove)="removeItem(item)" [item]="item"></app-item>

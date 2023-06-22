@@ -27,4 +27,8 @@ export class TasksServiceService {
   removeItem(item: Item): void {
     this.allItems = this.allItems.filter((task) => task !== item);
   }
+  changeItem(item: Item, description: string, status: string): void {
+    this.allItems[this.allItems.indexOf(item)].description = description;
+    this.allItems[this.allItems.indexOf(item)].status = description;
+  }
 }
