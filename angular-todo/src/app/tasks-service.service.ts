@@ -13,7 +13,7 @@ export class TasksServiceService {
     { description: 'laugh4', status: 'unimportant' },
   ];
   addItem(description: string, status: string) {
-    if (!description) {
+    if (!description || !status) {
       return;
     }
     this.allItems.unshift({
@@ -25,6 +25,6 @@ export class TasksServiceService {
     return [...this.allItems];
   }
   removeItem(item: Item): void {
-    this.allItems.splice(this.allItems.indexOf(item), 1);
+    this.allItems = this.allItems.filter((task) => task !== item);
   }
 }

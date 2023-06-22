@@ -8,14 +8,16 @@ import { TasksServiceService } from './tasks-service.service';
 })
 export class AppComponent {
   title = 'todo';
+  description = '';
+  status = '';
   allItems: Item[];
   filter: 'all' | 'important' | 'unimportant' | 'done' = 'all';
   constructor(private taskService: TasksServiceService) {
     this.allItems = taskService.getItems();
   }
 
-  addItem(description: string, status: string) {
-    this.taskService.addItem(description, status);
+  addItem() {
+    this.taskService.addItem(this.description, this.status);
     this.allItems = this.taskService.getItems();
   }
   removeItem(item: Item): void {

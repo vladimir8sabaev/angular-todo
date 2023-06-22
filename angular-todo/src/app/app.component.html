@@ -2,13 +2,14 @@
   <h1>My To Do List</h1>
   <label for="addItemInput">What would you like to do today?</label>
   <input placeholder="search item" type="text" class="lg-text-input" />
-  <input #newItem placeholder="add an item" (keyup.enter)="addItem(newItem.value, mainSelect.value); newItem.value = ''"
-    class="lg-text-input" id="addItemInput" />
-  <select class="mainSelect" name="mainSelect" id="mainSelect" #mainSelect>
+  <input [(ngModel)]="description" #newItem placeholder="add an item" (keyup.enter)="addItem()" class="lg-text-input"
+    id="addItemInput" />
+  <select [(ngModel)]="status" class="mainSelect" name="mainSelect" id="mainSelect" #mainSelect>
+    <option value="">Please, choose status of your task</option>
     <option value="unimportant">unimportant</option>
     <option value="important">important</option>
   </select>
-  <button class="btn-primary" (click)="addItem(newItem.value, mainSelect.value)">Add</button>
+  <button class="btn-primary" (click)="addItem()">Add</button>
   <div class="btn-wrapper">
     <button class="btn btn-menu" [class.active]="filter == 'all'" (click)="filter = 'all'">
       All
@@ -26,9 +27,7 @@
       Done
     </button>
   </div>
-  <h2>{{filterItems.length}} <span *ngIf="filterItems.length === 1; else elseBlock">item</span>
-    <ng-template #elseBlock>items</ng-template>
-  </h2>
+  <h2>Tasks: {{filterItems.length}}</h2>
 
   <ul>
     <li *ngFor="let item of filterItems">
