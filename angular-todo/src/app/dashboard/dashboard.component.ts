@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Item } from '../item';
 import { TasksServiceService } from '../tasks-service.service';
 import { HttpClient } from '@angular/common/http';
+import { AuthServiceService } from '../auth-service.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -15,7 +16,8 @@ export class DashboardComponent {
   filter: 'all' | 'important' | 'unimportant' | 'done' = 'all';
   constructor(
     private taskService: TasksServiceService,
-    private http: HttpClient
+    private http: HttpClient,
+    private authService: AuthServiceService
   ) {
     this.http.get<Item[]>('http://localhost:3000/items').subscribe({
       next: (data: any) => {
@@ -69,5 +71,8 @@ export class DashboardComponent {
         this.allItems = data;
       },
     });
+  }
+  logout() {
+    this.authService.logout();
   }
 }

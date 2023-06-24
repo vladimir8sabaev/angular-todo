@@ -20,10 +20,5 @@ export class LoginComponent {
     this.authService
       .login(this.loginObj.email, this.loginObj.password)
       .subscribe((res: any) => console.log(res));
-    if (localStorage.getItem('del_meetups_auth_token')) {
-      this.router.navigateByUrl('/dashboard');
-    } else {
-      alert('You are not a user');
-    }
   }
 }

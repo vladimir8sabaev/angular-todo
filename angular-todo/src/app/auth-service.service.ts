@@ -18,10 +18,19 @@ export class AuthServiceService {
       .pipe(
         map((res) => {
           if (res.token) {
+            this.routes.navigate(['dashboard']);
             localStorage.setItem('del_meetups_auth_token', res.token);
+            let payload = res.token.split('.')[1];
+            payload = window.atob(payload);
+            console.log(JSON.parse(payload));
           }
           return res;
         })
       );
+  }
+
+  logout() {
+    localStorage.removeItem('del_meetups_auth_token');
+    this.routes.navigate(['login']);
   }
 }
