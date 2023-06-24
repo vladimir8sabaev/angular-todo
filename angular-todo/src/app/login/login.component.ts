@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthServiceService } from '../auth-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -7,7 +8,10 @@ import { AuthServiceService } from '../auth-service.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  constructor(private authService: AuthServiceService) {}
+  constructor(
+    private authService: AuthServiceService,
+    private router: Router
+  ) {}
   loginObj = {
     email: '',
     password: '',
@@ -16,5 +20,10 @@ export class LoginComponent {
     this.authService
       .login(this.loginObj.email, this.loginObj.password)
       .subscribe((res: any) => console.log(res));
+    if (localStorage.getItem('del_meetups_auth_token')) {
+      this.router.navigateByUrl('/dashboard');
+    } else {
+      alert('You are not a user');
+    }
   }
 }

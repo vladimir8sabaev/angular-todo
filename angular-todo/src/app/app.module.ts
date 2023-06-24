@@ -8,9 +8,11 @@ import { TasksServiceService } from './tasks-service.service';
 import { LoginComponent } from './login/login.component';
 import { AuthServiceService } from './auth-service.service';
 import { HttpClientModule } from '@angular/common/http';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
-  declarations: [AppComponent, ItemComponent, LoginComponent],
+  declarations: [AppComponent, ItemComponent, LoginComponent, DashboardComponent, AboutComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [TasksServiceService, AuthServiceService],
   bootstrap: [AppComponent],

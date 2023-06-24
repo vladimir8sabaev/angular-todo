@@ -9,14 +9,15 @@
 
   <!-- Этот блок отображается, если пользователь кликнул на кнопку Edit -->
   <div *ngIf="editable">
-    <input class="sm-text-input" placeholder="edit item" [value]="item.description" #editedItem
-      (keyup.enter)="saveItem(editedItem.value, statusSelect.value)">
-    <select class="statusSelect" name="statusSelect" id="statusSelect" #statusSelect>
+    <input class="sm-text-input" placeholder="edit item" [(ngModel)]="description" #editedItem>
+    <!-- (keyup.enter)="saveItem(editedItem.value, statusSelect.value)" -->
+    <select [(ngModel)]="status" class="statusSelect" name="statusSelect" id="statusSelect" #statusSelect>
       <option *ngFor="let status of statusArr" [value]="status">{{status}}</option>
     </select>
     <div class="btn-wrapper">
       <button class="btn" (click)="editable = !editable">Cancel</button>
-      <button class="btn btn-save" (click)="saveItem(editedItem.value, statusSelect.value)">Save</button>
+      <button class="btn btn-save" (click)="saveItem()"> Save </button>
+      <!-- (click)="saveItem(editedItem.value, statusSelect.value)" -->
     </div>
   </div>
 </div>
