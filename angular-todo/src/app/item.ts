@@ -3,3 +3,9 @@ export interface Item {
   description: string;
   status: string;
 }
+
+export interface User {
+  id: number;
+  email: string;
+  password: string;
+}
